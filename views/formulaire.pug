@@ -1,0 +1,47 @@
+extends layout
+
+block contenuPrincipal
+    section.formulaire
+        -data = data || {}
+                form.row.g-3(action='formulaire' method='POST' enctype='multipart/form-data')
+                    .col-md-6
+                        label.form-label(for='titre') Titre
+                        input.form-control(type='text' required='required' id='titre' name='titre' value=data.titre)
+                    .col-md-6
+                        label.form-label Photo
+                        input.form-control(type='file' name='photos' multiple data-max-file-size='3MB' accept='image/png, image/jpeg' value=data.photos)
+                        label.form-label(for='prix') Prix (€)
+                        input.form-control(type='number' required='required' id='prix' name='prix' min='0' value=data.prix)
+                    .col-md-6
+                        label.form-label(for='dateDebut') Début
+                        input.form-control(type='date' required='required' id='dateDebut' name='dateDebut'
+                            min='2023-01-01' max='2049-12-31' value=dateDebut)
+                        label.form-label(for='dateFin') Fin
+                        input.form-control(type='date' required='required' id='dateFin' name='dateFin'
+                            min='2023-01-02' max='2050-01-01' value=dateFin)
+                    .col-md-6
+                        label.form-label(for='description') Description
+                            textarea.form-control(name='description' rows="10" cols="50" required='required' id ='description' value=data.description)
+                    .col-md-6
+                        label.form-label Type :
+                            label.form-label en vente
+                                input.radio(type='radio' name='type' required='required' value='A la vente' checked='')
+                            label.form-label en location
+                                input.radio(type='radio' name='type' required='required' value='A la location')
+                    .col-md-6
+                        label.form-label  Statut :
+                            label.form-label disponible
+                                input.radio(type='radio' name='statutBien' required='required' value='Disponible' checked='')
+                            label.form-label loué
+                                input.radio(type='radio' name='statutBien' required='required' value='Loué')
+                            label.form-label vendu
+                                input.radio(type='radio' name='statutBien' required='required' value='Vendu')
+
+                    .col-md-6
+                        label.form-label Publication :
+                            label.form-label publié
+                                input.radio(type='radio' name='statut' required='required' value='Publié' checked='')
+                            label.form-label non publié
+                                input.radio(type='radio' name='statut' required='required' value='Non publié')
+
+                        button.btn.btn-dark(type='submit' value='submit' name='submit' id='submit') Créer

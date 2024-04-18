@@ -1,0 +1,47 @@
+extends layout
+
+block contenuPrincipal
+    section.annonces
+        if annonces.length
+            each annonce in annonces.reverse()
+                if agent || annonce.statut === 'Publié'
+                    .container
+                        .row
+                            .col-md-12
+                                div
+                                    if(auth)
+                                        p.statutPublication Statut de la publication : #{annonce.statut}
+                                    a(href=`annonces/${annonce.id}`)
+                                        figure
+                                            if(annonce.photos.length)
+                                                img.rounded.float-left(src=`images/${annonce.photos[0]}`)
+                                            else
+                                                img.rounded.float-left(src='https://cataas.com/cat/says/hello%20world!')
+                                div.infos
+                                    div.infosFils
+                                        p.annonceSousTitre
+                                            span.annonceSousTitre Titre :
+                                            span.annonceSousTitre2 #{annonce.titre}
+                                        p.annonceSousTitre
+                                            span.annonceSousTitre Description :
+                                            span.annonceSousTitre2  #{annonce.description}
+                                        p.annonceSousTitre
+                                            span.annonceSousTitre Type :
+                                            span.annonceSousTitre2  #{annonce.type}
+                                        p.annonceSousTitre
+                                            span.annonceSousTitre Auteur :
+                                            span.annonceSousTitre2  #{annonce.auteur}
+                                        p.annonceSousTitre
+                                            span.annonceSousTitre Statut :
+                                            span.annonceSousTitre2  #{annonce.statutBien}
+                                        p.annonceSousTitre
+                                            span.annonceSousTitre Début :
+                                            span.annonceSousTitre2  #{annonce.dateDebut.toDateString()}
+                                        p.annonceSousTitre
+                                            span.annonceSousTitre Fin:
+                                            span.annonceSousTitre2  #{annonce.dateFin.toDateString()}
+                                        p.annonceSousTitre
+                                            span.annonceSousTitre Prix :
+                                            span.annonceSousTitre2  #{annonce.prix} €
+        else
+            h1.titre Aucune annonce

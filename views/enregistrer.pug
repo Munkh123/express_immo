@@ -1,0 +1,36 @@
+extends layout   
+                                                   
+block contenuPrincipal
+    section.enregistrer.h4
+        if errors
+            ul
+                for error in errors
+                    li= error.msg
+        if err
+            .text-danger #{err}
+        -data = data || {}
+        form.connecter(action='enregistrer' method='POST')
+            .form-group
+                label(for='username') Nom d'utilisateur
+                    input.form-control(type='text' required='required' id='username' name='username' maxlength='50' value=data.username placeholder='Nom d\'utilisateur')
+            .form-group
+                label(for='email') Adresse mail
+                    input.form-control(type='email' required='required' id='email' name='email' maxlength='50' value=data.email placeholder='Adresse@mail.fr')
+
+            .form-group
+                label(for='password') Mot de passe
+                    input.form-control(type='password' required='required' id='password' name='password' minlength='6' maxlength='100' value=data.hashedPassword placeholder='Mot de passe')
+            .form-group
+                label Agence :
+                    br
+                    .form-check-inline
+                        input.form-check-input(type='radio' name='agent' required='required' value='true')
+                        label.form-check-label
+                            | oui
+                        br
+                        input.form-check-input(type='radio' name='agent' required='required' value='false' checked='')
+                        label.form-check-label
+                            | non
+
+            .form-group
+                button.btn.btn-dark(type='submit' value='submit') Valider

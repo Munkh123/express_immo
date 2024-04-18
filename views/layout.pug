@@ -1,0 +1,100 @@
+doctype html
+html
+    head
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css')
+        link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css', integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T', crossorigin='anonymous')
+        script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js', integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1', crossorigin='anonymous')
+        script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js', integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM', crossorigin='anonymous')        link(rel='stylesheet', href='https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css')
+        title #{titre}
+    body
+        block titreSite
+            .h1.titreSite.display-3 Location ou Achat d'appartement
+        block barreNavigation
+            .container
+                ul.nav.nav-tabs.h3
+                    if(page==="index")
+                        li.nav-item.active
+                            i.bi.bi-house-door-fill
+                            span Home
+                    else
+                        li.nav-item
+                            a(href='/')
+                                i.bi.bi-house-door-fill
+                                span Home
+
+                    if(page==="annonces")
+                        li.nav-item.active
+                            i.bi.bi-book-half
+                            span Annonces
+                    else
+                        li.nav-item
+                            a(href=`${url}annonces`)
+                                i.bi.bi-book-half
+                                span Annonces
+
+                    if(auth && agent)
+                        if(page==="formulaire")
+                            li.nav-item.active
+                                i.bi.bi-pen
+                                span.annonce Créer annonce
+                        else
+                            li.nav-item
+                                a(href=`${url}formulaire`)
+                                    i.bi.bi-pen
+                                    span.annonce Créer annonce
+
+                    if(auth !== true)
+                        if(page==="connecter")
+                            li.nav-item.active
+                                i.bi.bi-box-arrow-in-right
+                                span Connecter
+                        else
+                            li.nav-item
+                                a(href=`${url}connecter`)
+                                    i.bi.bi-box-arrow-in-right
+                                    span Connecter
+
+                        if(page==="enregistrer")
+                            li.nav-item.active
+                            i.bi.bi-pen
+                                 span S'inscrire
+                        else
+                            li.nav-item
+                                a(href=`${url}enregistrer`)
+                                    i.bi.bi-pen
+                                    span S'inscrire
+                    if(auth)
+                            li
+                                form(action=`${url}connecter/deconnecter` method='post') &nbsp;
+                                    button.deconnecter(type='submit' name='deconnecter' value='deconnecter')
+                                        i.bi.bi-door-open
+                                        span Déconnecter
+        div.contenuPrincipal
+            block contenuPrincipal
+        block foot
+
+script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js')
+script(src='https://code.jquery.com/jquery-3.4.1.min.js')
+script.
+    $(document).ready(function() {
+        let imagesPreview = function(input, placeToInsertImagePreview) {
+            if (input.files) {
+                let filesAmount = input.files.length;
+                for (i = 0; i < filesAmount; i++) {
+                    let reader = new FileReader();
+                    reader.onload = function(event) {
+                        $($.parseHTML("<img>"))
+                            .attr("src", event.target.result)
+                            .appendTo(placeToInsertImagePreview);
+                    };
+                    reader.readAsDataURL(input.files[i]);
+                }
+            }
+        };
+
+        $("#input-photos").on("change", function() {
+            imagesPreview(this, "div.preview-images");
+        });
+    });

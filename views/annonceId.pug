@@ -1,0 +1,83 @@
+extends layout
+
+block contenuPrincipal
+    section.annonceId
+        if agent || annonceId.statut === 'Publié'
+            .container
+                .row
+                    .col-md-12
+                        div
+                            p.statutPublication Statut de la publication : #{annonceId.statut}
+                            #carouselExampleControls.carousel.slide(data-bs-ride='carousel')
+                                .carousel-inner
+                                    if(annonceId.photos.length<1)
+                                        img(src='https://cataas.com/cat/says/hello%20world!')
+                                    else
+                                        -i=0
+                                        each picture in annonceId.photos
+                                            if(i===0)
+                                                .carousel-item.active
+                                                    img(src=`/images/${picture}`)
+                                            else
+                                                .carousel-item
+                                                    img(src=`/images/${picture}` alt='...')
+                                            -i++
+                                a.carousel-control-prev(href='#carouselExampleControls' role='button' data-slide='prev' style='background-color:grey;')
+                                    span.carousel-control-prev-icon(aria-hidden='true')
+                                    span.sr-only Previous
+                                a.carousel-control-next(href='#carouselExampleControls' role='button' data-slide='next' style='background-color:grey;')
+                                    span.carousel-control-next-icon(aria-hidden='true')
+                                    span.sr-only Next
+                        div.infoId
+                            p.annonceSousTitre
+                                span.annonceSousTitre Type :
+                                span.annonceSousTitre2 #{annonceId.type}
+                            if agent && annonceId.statut === 'Publié'
+                                p.annonceSousTitre
+                                    span.annonceSousTitre Statut de la publication :
+                                    span.annonceSousTitre2 #{annonceId.statut}
+                            p.annonceSousTitre
+                                span.annonceSousTitre Statut :
+                                span.annonceSousTitre2 #{annonceId.statutBien}
+                            p.annonceSousTitre
+                                span.annonceSousTitre Prix :
+                                span.annonceSousTitre2 #{annonceId.prix} €
+                            p.annonceSousTitre
+                                span.annonceSousTitre Description :
+                                span.annonceSousTitre2 #{annonceId.description}
+                            p.annonceSousTitre
+                                span.annonceSousTitre Début:
+                                span.annonceSousTitre2 #{annonceId.dateDebut.toDateString()}
+                            p.annonceSousTitre
+                                span.annonceSousTitre Fin :
+                                span.annonceSousTitre2 #{annonceId.dateFin.toDateString()}
+                            p.annonceSousTitre
+                                span.annonceSousTitre Auteur :
+                                span.annonceSousTitre2 #{annonceId.auteur}
+                            if agent
+                                form(action=`/annonces/modifier/${annonceId.id}` method='GET')
+                                    button.btn.btn-dark.btnModifier(type='submit' value='submit') Modifier
+                            if agent
+                                form(action=`/annonces/supprimer/${annonceId.id}` method='POST')
+                                    button.btn.btn-dark.btnModifier2(type='submit' value='submit') Supprimer
+    div.commentaires
+        article
+                each commentaire in commentaireId
+                    div.commentaireAuteur
+                        if(commentaire.agent)
+                            p.commentaireAuteur
+                                span.sousTitreComm Auteur : #{commentaire.auteur}
+                        else
+                            p.commentaireAuteur
+                                span.sousTitreComm Auteur : #{commentaire.auteur}
+                        p.commentaireAuteurDate
+                            span.sousTitreComm Date :  #{commentaire.date.toLocaleString()}
+                        p.commentaireAuteurDate
+                            span.sousTitreComm  Commentaire :
+                        span.commentaireTexte #{commentaire.text}
+        article.zoneCommentaire
+                form(action=`/annonces/commentaire/${annonceId.id}` method='POST')
+                    div.form-group
+                    if(auth)
+                        textarea.form-control(name='commentaire' rows="5" cols="50" placeholder='écrire' required='true')
+                        button.btn.btn-dark(type='submit' value='submit') Valider

@@ -1,0 +1,235 @@
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+div.contenuPrincipal {
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 2%;
+    background-color: mediumseagreen;
+    border:2px solid;
+}
+/*titre du site*/
+div.titreSite{
+    text-align:center;
+    background-color: cadetblue;
+}
+
+/*zone du titre*/
+div.barreNavigation{
+    background-color: cadetblue;
+}
+div.container {
+    text-align: center;
+
+}
+
+/*barre de navigation*/
+ul.nav.nav-tabs{
+    border:2px solid;
+    border-radius: 2px;
+    font-weight: bold;
+    background-color:black;
+    display: flex;
+    justify-content:  space-between;
+    flex-wrap: wrap;
+}
+li.nav-item.active{
+    color:white;
+}
+li.nav-item{
+    border-radius: 10px;
+    width: 20%;
+    margin: auto;
+    background-color: whitesmoke;
+}
+span.annonce{
+    font-size: 70%;
+}
+
+li.nav-item.active{
+    border-radius: 10px;
+    width: 20%;
+    margin: auto;
+    background-color: dimgrey;
+}
+
+/*details annonce*/
+p.annonceSousTitre{
+    margin-bottom: 2%;
+    margin-top: 2%;
+    border-radius: 5px;
+    border: 2px solid;
+    background-color: white;
+}
+
+span.annonceSousTitre{
+    margin-left: 10%;
+    font-weight: bold;
+}
+
+span.annonceSousTitre2{
+    margin-left: 2px;
+}
+
+/*formulaire*/
+form {
+    display: inline-block;
+}
+button.deconnecter{
+    background-color: red;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+/*formulaire de connexion*/
+section.connecter{
+    margin-top:5%;
+    text-align: center;
+}
+form.connecter{
+    font-weight: bold;
+}
+button.btn.btn-dark{
+    font-weight: bold;
+    width:100%;
+}
+
+/*bienvenue*/
+section.bievenue{
+    margin-top:10%;
+    text-align:center;
+}
+
+.h1.bonjour {
+    font-style: italic;
+}
+.h1.phraseBienvenue{
+    font-weight: bold;
+    margin-bottom: 10%;
+}
+
+/*enregistrer*/
+section.enregistrer{
+    margin-top:5%;
+    text-align:center;
+}
+
+/*annonces*/
+section.annonces{
+    margin-top:5%;
+    text-align:center;
+}
+
+img{
+    width:  300px;
+    height: 300px;
+    object-fit: cover;
+    margin-bottom:20px;
+}
+
+div.infos{
+    margin-left: 50%;
+}
+div.infosFils{
+    text-align: left
+}
+
+p.statutPublication{
+    background-color: orange;
+    font-weight: bold;
+    border: 1px solid;
+}
+
+/*annonceId*/
+section.annonceId{
+    margin-top:5%;
+    text-align:center;
+}
+div.infoId{
+    text-align: left;
+}
+div.infoFilsId{
+    text-align: left;
+    margin-bottom:5%;
+}
+
+div.commentaires{
+    text-align: left;
+}
+
+div.commentaireAuteur{
+    margin-left: 35%;
+    border:2px solid;
+    background-color: floralwhite;
+    text-align:left;
+    width:30%;
+    margin-bottom:25px;
+}
+
+p.commentaireAuteur{
+    font-weight: bold;
+    background-color: deepskyblue;
+}
+
+p.commentaireAuteurDate{
+    font-weight: bold;
+    background-color: cadetblue;
+}
+
+span.sousTitreComm{
+    margin-left: 5%;
+}
+
+span.commentaireTexte{
+    margin-left: 2%;
+}
+
+article.zoneCommentaire{
+    text-align: center;
+    margin-bottom:20px;
+}
+
+button.btn.btn-dark.btnModifier{
+    margin-bottom: 20px;
+}
+
+button.btn.btn-dark.btnModifier2{
+    margin-bottom: 20px;
+}
+
+/*modifier*/
+section.modifier{
+    margin-top: 2%;
+    text-align: center;
+    width:60%;
+    margin-left: 20%;
+}
+
+input.radio{
+    margin: 0 15px 0 15px;
+}
+
+label.form-label{
+    font-weight: bold;
+}
+
+/*formulaire*/
+section.formulaire{
+    margin-top: 2%;
+    text-align: center;
+    width:60%;
+    margin-left: 20%;
+}
+
+/*valider*/
+section.valider{
+    padding-bottom: 5%;
+    border:2px solid;
+    background-color: white;
+    margin-top: 100px;
+    text-align: center;
+    color:limegreen;
+}
